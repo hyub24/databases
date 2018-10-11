@@ -2,12 +2,15 @@ var db = require('../db');
 
 module.exports = {
   messages: {
-    get: function () {
+    get: function (res, cb) {
       db.dbConnection.query('select * from messages', (err, result) => {
         if (err) {
           throw err;
         }
-        //console.log(result);
+        console.log(JSON.stringify(result));
+        cb(err, res, JSON.stringify(result));
+        res.end(JSON.stringify(result));
+        
       });
     }, // a function which produces all the messages
     post: function (data, cb) {
@@ -21,12 +24,13 @@ module.exports = {
   },
 
   users: {
-    get: function () {
-      console.log('user get');
+    get: function (cb) {
+      //console.log('user get');
       db.dbConnection.query('select * from users', (err, result) => {
         if (err) {
           throw err;
         }
+        //console.log('result', result);
       });
     },
     post: function (data, cb) {
