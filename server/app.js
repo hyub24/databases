@@ -26,7 +26,7 @@ app.use(express.static(__dirname + '/../client'));
 
 // Connect to database
 
-db.dbConnection.connect();
+// db.dbConnection.connect();
 
 
 // If we are being run directly, run the server.
